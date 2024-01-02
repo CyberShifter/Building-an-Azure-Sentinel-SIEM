@@ -492,7 +492,7 @@ The purple output seen on the output part of my Powershell API appears whenever 
 ![98](https://imgur.com/dDQaTb4.png)
 
 ---
-70. I am not able to see all the entries that I am looking at that correlate to the Audit Failures in my Event Viewer in my Virtual Machine. It is just being brought into Log Analysis Workspace.
+70. I am now able to see all the entries that I am looking at that correlate to the Audit Failures in my Event Viewer in my Virtual Machine. It is just being brought into Log Analysis Workspace.
 
 
 ![99](https://imgur.com/gGD3buz.png)
@@ -517,68 +517,243 @@ The purple output seen on the output part of my Powershell API appears whenever 
 ![102](https://imgur.com/gZQ7i53.png)
 
 ---
-75. If I go back to my Azure portal and look at the "Raw Data" column, I can see that in contains that whole line in the previous screenshot.
+74. If I go back to my Azure portal and look at the "Raw Data" column, I can see that in contains that whole line in the previous screenshot.
 
 ![103](https://imgur.com/2H7SN7V.png)
 
 
 ---
-76. The next thing that must be done is taking the "Raw Data" that I have and extractingcertain fields from it to make their own fields. So I to have like a *Latitude* field, as well as a *Longitude* field, and a *username* field, and a *password* field, and  a *country* field, and so on and so forth.  I'll expand the logs at random and click on the 3 dots. I see an option that says "Extract fields from FAILED_RDP_WITH_GEO_CL".
+75. The next thing that must be done is taking the "Raw Data" that I have and extractingcertain fields from it to make their own fields. So I to have like a *Latitude* field, as well as a *Longitude* field, and a *username* field, and a *password* field, and  a *country* field, and so on and so forth.  I'll expand the logs at random and click on the 3 dots. I see an option that says "Extract fields from FAILED_RDP_WITH_GEO_CL".
 
 
 ![104](https://imgur.com/EluSTaN.png)
 
 
 ---
-77. I click on it and I can see the raw data logging, next to it, I can see the latitude and longitude, the destination host and username and much more.
+76. I click on it and I can see the raw data logging, next to it, I can see the latitude and longitude, the destination host and username and much more.
 
 
 ![105](https://imgur.com/EluSTaN.png)
 
 
 ---
-78. I want to extract all of these and turn them into their own fields. What I'll do is highlight the field of latutude.
+77. I want to extract all of these and turn them into their own fields. What I'll do is highlight the field of latutude.
 
 
 ![106](https://imgur.com/73sN5Hb.png)
 
 
 ---
-79. I will then automatically recieve a pop up asking for a field title and field type.I name my field title "Latutude and my field type as a "numeric". Then I click "Extract".
+78. I will then automatically recieve a pop up asking for a field title and field type.I name my field title "Latutude and my field type as a "numeric". Then I click "Extract".
 
 
 ![107](https://imgur.com/Cj7uXj8.png)
 
 
-80. I repeat the smae processes for *Longitude* , I*Country* (but changing the field type to text), *State* (change the field type to text), and *Sourcehost* (change the field type to numeric)
+---
+79. I recieve another pop up on the middle of the screen and I make sure that all the fields look proper. Eveything does look accurate so i'll save the extraction by clicking on "Save" at the bottom of the screen
 
-While creating a field for *longitude*, I noticed that the second search result on my gpop up overview is highlighted (meaning it is screwed). So I click on the compass logo on the blue header of it, and I "modify the highlight".
 
-![109](https://imgur.com/TX8YzqI.png)
+
+**Note to Self** : I repeat the smae processes for *Longitude* , I*Country* (but changing the field type to text), *State* (change the field type to text), and *Sourcehost* (change the field type to numeric)
+
+
+![108](https://imgur.com/TarGxEe.png)
 
 
 ---
-82. So I'll highlight the longitude and a pop up will appear and I end up editing it by changing the field type to metric.
+80. While creating a field for *longitude*, I noticed that the second search result on my gpop up overview is highlighted (meaning it is screwed). So I click on the compass logo on the blue header of it, and I "modify the highlight".
+
+
+
+
+![109](https://imgur.com/undefined.png)
+
+
+
+---
+80. So I'll highlight the longitude and a pop up will appear and I end up editing it by changing the field type to metric.
 
 ![110](https://imgur.com/FKPkym7.png)
 
 
----
-83. I was able to navigate to my *Custom logs* and into my *Custom Fields* just to see all the fields that i extracted, which was everything in the *Raw Data*. Whenever I make an extract, it creates a *custom field* here and in the future, when I get more data coming in, like when more people fail to log in, and I find that the latitude or any of the custom field names, I can always delete the field and redo the extract for it.
-
-![110](https://imgur.com/Te4WGZJ.png)
-
 
 ---
-84. I will now finsih setting up my map on Sentinel on Azure Portal and click on "law-honeypot1".
+81. At the end of the extraction process, I end up with this end result. There is no data in any of the columns yet. There is no data in any of the columns yet. The data will come in on subsequent logs, so the next time an attacker fails to log in, the data will be passed out and put in those fieds properly.
 
-![111](https://imgur.com/nMaaj1z.png)
+![111](https://imgur.com/AFocDUc.png)
 
 
 ---
-85. When I click on *Overview*, I am able to see the general Sentinel dashboard. Iam able to see the logs coming in, I can see the "FAILED_RDP_WITH_GEO_CL" and "Security Event" which is my event log from the actual VM.
+82. I was able to navigate to my *Custom logs* and into my *Custom Fields* just to see all the fields that i extracted, which was everything in the *Raw Data*. Whenever I make an extract, it creates a *custom field* here and in the future, when I get more data coming in, like when more people fail to log in, and I find that the latitude or any of the custom field names, I can always delete the field and redo the extract for it.
 
-![114](https://imgur.com/nMaaj1z.png)
+![113](https://imgur.com/ueWso5E.png)
+
+
 
 ---
-86. 
+83. I will now finish setting up my map in Sentinel. I navigate to *Microsoft Sentinel* on Azure Portal and click on "law-honeypot1".
+
+
+![114](https://imgur.com/Mt9D3of.png)
+
+
+---
+83. When I click on *Overview*, I am able to see the general Sentinel dashboard. Iam able to see the logs coming in, I can see the "FAILED_RDP_WITH_GEO_CL" and "Security Event" which is my event log from the actual VM.
+
+![116](https://imgur.com/MtFKBph.png)
+
+---
+84. I am going to set up my actual geo map, so I click on "*Workbooks*" and click on "*Add Workbook*"
+
+![117](https://imgur.com/6Udn8qf.png)
+
+
+---
+85. Then I click on "*Edit*"
+
+![118](https://imgur.com/gf7vzCH.png)
+
+
+---
+86. I'll then remove the two default widgets given to me by the Workbook.
+
+![119](https://imgur.com/74ab2LB.png)
+
+
+---
+87. Then I'll add the query in the space.
+
+![120](https://imgur.com/3BVjIM4.png)
+
+
+---
+88. Then I'll paste the query in the space.
+
+![121](https://imgur.com/gXj3qIB.png)
+
+
+---
+89. I modify this query to be tailored to the one in my VM so it looks like this (I ended up removing the *destinationhost* because of the problems it gave me but I was able to figure out where i went went wrong)
+
+
+
+![121](https://imgur.com/6tAs3sW.png)
+
+
+---
+90. So I then run the query and it gives me a result at the bottom of the screen.
+
+![123](https://imgur.com/8v0RqCo.png)
+
+
+---
+91. I want to visualize this on a world map, so I click on "*Visualization*" then navigate and look for "*Map*"
+
+![124](https://imgur.com/vsgIDaW.png)
+
+
+---
+92. Now I run the query.
+
+
+![125](https://imgur.com/RF7Jzfr.png)
+
+
+---
+93. On the right, I have a pane for my Map Settings. I modified the *Longitude* , *Latitude*, and other fields to the proper field names I designated them to when I created them and click on "*Apply*".
+
+![127](https://imgur.com/pcSiDDw.png)
+
+---
+94. On the map, I can see my current location pin pointed on the map. This is where my failed log in attempt came from.
+
+
+![127](https://imgur.com/mJxHkQN.png)
+
+
+---
+95. I can also configure the map settings in the right pane. I was able to configure/change the *metric value*, *metric label*, it allowed me to view metrics off the map, such as the IP Address,and the ammount of people who attempted to log in.
+
+![129](https://imgur.com/Mkd1qdb.png)
+
+---
+96. This is a closer view.
+
+![130](https://imgur.com/nySNTGO.png)
+
+
+---
+97. Now I save and close the *Map Settings*. I will save it as "Failed RDP World Map" and click save when done.
+
+
+![131](https://imgur.com/AbgjYkZ.png)
+
+---
+98. Clock on "*Done Editing*"
+
+
+![132](https://imgur.com/d1A1NM7.png)
+
+
+I now have my map so I'll be back in a 3 hours to see if other people have discovered this honeypot and see if other people are trying to log in to my VM.
+
+*Note to Self* : I realized that the Powershell scriptnhas to be running in my VM as it is just like a proof of concept implementation. I made sure it runs so that when subsequent logins fail, it'll be recorded. If the script in Powershell isn't running all the failed logins go to the *Windows Event Log* but they won't go into my custom logs which is what is needed for the extraction of the geo data.
+
+
+---
+99. Okay, so it has been about 5 hours and I couldn't be bothered to wait, I did notice alot of activity regarding failed logins down below:
+
+
+![133](https://imgur.com/nbzyLh9.png)
+
+
+As seen on my SIEM, someone in China attempted to get into my Virtual Machine. I did mis-edit  this because the U.S. bubble is massive and the China bubble is small so I edit it.
+
+---
+100. As you can see in my VM, they attempted to log in with Mandarin letters in the username section of my Raw Data.
+
+
+![134](https://imgur.com/kcKweXS.png)
+
+---
+101. I went to Google Translate to curiously discover what the attacker even put into the VM username login Interface. The translation of the letters was finally translated and it meant, "*User Account*" in English which I found interesting.
+
+![135](https://imgur.com/4bQhrNo.png)
+
+
+---
+102. Fast forward to another 4 hours and I see attackers from Taiwan trying to log into my honey pot VM with 312 failed attempts from my location on the map.
+
+![136](https://imgur.com/xNNXseH.png)
+
+---
+103. Fast forward to the following day (8 hours later) and I have 249 log in attempts from the Phillipines, 530 attempts from China, and 836 attempts from Taiwan
+
+![137](https://imgur.com/tk7EzsX.png)
+
+
+---
+104. In my VM, located in my Poweshell Script that I am still running, I see my bottom hal of the script execution and it shows the region of the Phillipines. And the attacker trying to login with the username "*Admin*".
+
+![138](https://imgur.com/mod5uTM.png)
+
+
+
+---
+105. I view my SIEM again in about another 12 hours since I am at work during the time, and I am viewing attacks happening to my VM from all over the world. I have attackers from Russia, Hong Kong, India, China, Taiwan, Phillipines, Chile and other countries. What really stood out to me was the 3,000 attempts from the Phillipines. I'm pretty sure it was the same attacker just trying to brute force his way into my VM and I admire his/her dedication haha.
+
+![139](https://imgur.com/zPaqoQY.png)
+
+
+---
+---
+
+
+
+---
+Final Thoughts/Conclusion
+---
+In thi lab, L learned alot. I learned that as soon as any device gets put on the Internet, people will attempt to get into your device. It doesn't matter if you are the US Department of Defense, the U.S. President, or any type of big business. Attackers do not care. These attackers scavenge on the Internet for hosts to get in. You are going to be a target of opportunity if your device is online and ports are open.
+
+Another thought is that digital civilians/people should avoid using "Admin" as username and passwords. In my Powershell Script that I have running, the amount of times that attackers attempted to log in to my honeypot using "Admin" as the Username was astonishing to me because I know a lot of companies and people who use "Admin" as credentials for logging into devices. People need to learn to exercise strong passwords and enabling MFA to mitigate attacks. 
